@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class dynamicbinding {
+    public static void main(String args[]){
+        bill ob=new electricity_bill();
+        ob.input();
+        ob.display();
+    }
+}
+
+class bill{
+    protected int reference_num;
+    Scanner sc=new Scanner(System.in);
+    public void input(){
+        System.out.println("Enter the reference number");
+        reference_num=sc.nextInt();
+    }
+    public void display(){
+        System.out.println("The reference number is :"+reference_num);
+    }
+}
+class electricity_bill extends bill{
+    private int units,per_unit_price;
+    private int tax,amount;
+    public void input(){
+        super.input();
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the units:");
+        units=sc.nextInt();
+        System.out.println("Enter the per unit price");
+        per_unit_price=sc.nextInt();
+        System.out.println("Enter the tax:");
+        tax=sc.nextInt();
+    }
+    public int total_amount(){
+        amount=(per_unit_price*units)-tax;
+        return amount;
+    }
+
+    @Override
+    public void display() {
+        super.display();
+        System.out.println("The units is:"+units);
+        System.out.println("The tax is:"+tax);
+        System.out.println("The price per unit:"+per_unit_price);
+        System.out.println("The total amount is:"+total_amount());
+    }
+}
